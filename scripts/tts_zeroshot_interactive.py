@@ -36,8 +36,8 @@ import librosa
 import soundfile as sf
 
 MODEL = "tts_models/multilingual/multi-dataset/xtts_v2"
-DEFAULT_OUT = os.path.join("data", "demo_dayana_interactive.wav")
-DEFAULT_MAX_REFS = 12
+DEFAULT_OUT = os.path.join("data", "demo_interactive.wav")
+DEFAULT_MAX_REFS = 8
 
 
 def collect_refs(max_refs=12):
@@ -62,10 +62,8 @@ def time_stretch_file(in_path, out_path, speed=1.0, sr=22050):
 
 def choose_emotion():
     options = [
-        ("Neutro", "neutral"),
         ("Alegre", "cheerful"),
         ("Tranquilo", "calm"),
-        ("Serio", "serious"),
         ("Enfadado", "angry"),
         ("Triste", "sad"),
     ]
@@ -87,7 +85,7 @@ def main():
 
     text = input("Texto a sintetizar (ENTER para usar texto por defecto): \n")
     if not text.strip():
-        text = "Hola, este es un demo de clonación de voz."
+        text = "Hola, este es un demo de clonación de voz. Me llamo Raúl Armas, vivo en San Miguel en Fortunato Quezada 109."
 
     lang = input("Idioma para pronunciación [es]: ").strip() or "es"
 
@@ -101,7 +99,7 @@ def main():
     except:
         speed = 1.0
 
-    temp_raw = input("Temperature/aleatoriedad (float 0.0-1.5) [0.7]: ").strip() or "0.4"
+    temp_raw = input("Temperature/aleatoriedad (float 0.0-1.5) [0.4]: ").strip() or "0.4"
     try:
         temperature = float(temp_raw)
     except:
